@@ -1,0 +1,17 @@
+type Query{
+    sayHello: String
+    sayHelloTo(name: String!): String
+    random: Int!
+
+    # use this to fetch all customers
+    customers: [Customer]!
+
+    # To fetch specific customer by id
+    customerById(id: ID!): Customer
+
+    # filter customers by name
+    customersNameContains(name: String!): [Customer]
+
+    # filter customers by age range
+    customersByAgeRange(filter: AgeRangeFilter!): [Customer]!
+}
