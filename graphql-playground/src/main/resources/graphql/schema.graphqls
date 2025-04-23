@@ -1,3 +1,13 @@
+scalar Long
+scalar Byte
+scalar Short
+scalar BigDecimal
+scalar BigInteger
+scalar Date
+scalar LocalTime
+scalar DateTime
+scalar Object
+
 type Query{
     sayHello: String
     sayHelloTo(name: String!): String
@@ -15,4 +25,9 @@ type Query{
     # filter customers by age range
     customersByAgeRange(filter: AgeRangeFilter!): [Customer]!
     customersWithOrder: [CustomerWithOrder]!
+
+    level1: Level1
+
+    get: AllTypes
+    products: [Product]
 }
