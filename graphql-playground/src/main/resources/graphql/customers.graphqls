@@ -18,3 +18,11 @@ type CustomerOrder{
     id: ID!
     description: String
 }
+
+type CustomerWithOrder{
+    id: ID!
+    name: String
+    age: Int
+    city: String
+    orders: [CustomerOrder]!
+}

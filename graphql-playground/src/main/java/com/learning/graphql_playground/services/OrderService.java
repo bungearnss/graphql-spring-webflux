@@ -9,6 +9,7 @@ import reactor.util.function.Tuples;
 import reactor.util.function.Tuple2;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,9 @@ public class OrderService {
     );
 
     public Flux<CustomerOrder> ordersByCustomerName(String name) {
-        return Flux.fromIterable(map.getOrDefault(name, Collections.emptyList()));
+        return Flux.fromIterable(map.getOrDefault(name, Collections.emptyList()))
+                .delayElements(Duration.ofSeconds(1))
+                .doOnNext(o -> print("orders for " + name));
     }
 
     public Flux<List<CustomerOrder>> ordersByCustomerNames(List<String> names) {
@@ -51,5 +54,9 @@ public class OrderService {
                         Tuple2::getT1,
                         Tuple2::getT2
                 );
+    }
+
+    private void print(String msg) {
+        System.out.println(LocalDateTime.now() + " : " + msg);
     }
 }

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 @Service
 public class CustomerService {
 
@@ -16,8 +19,9 @@ public class CustomerService {
             Customer.create(4, "john", 5, "houston")
     );
 
-    public Flux<Customer> allCustomers() {
-        return flux;
+    public Flux<Customer> allCustomers(){
+        return flux.delayElements(Duration.ofSeconds(1))
+                .doOnNext(c -> print("customer " + c.getName()));
     }
 
     public Mono<Customer> customerById(Integer id) {
@@ -35,4 +39,7 @@ public class CustomerService {
                 .filter(c -> c.getAge() >= filter.getMinAge() && c.getAge() <= filter.getMaxAge());
     }
 
+    private void print(String msg){
+        System.out.println(LocalDateTime.now() + " : " + msg);
+    }
 }
