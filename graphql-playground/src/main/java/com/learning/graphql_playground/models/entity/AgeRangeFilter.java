@@ -1,4 +1,4 @@
-package com.learning.graphql_playground.models.dto;
+package com.learning.graphql_playground.models.entity;
 
 import lombok.Data;
 
