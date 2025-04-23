@@ -1,7 +1,7 @@
 package com.learning.graphql_playground.services;
 
-import com.learning.graphql_playground.models.dto.AgeRangeFilter;
-import com.learning.graphql_playground.models.dto.Customer;
+import com.learning.graphql_playground.models.entity.AgeRangeFilter;
+import com.learning.graphql_playground.models.entity.Customer;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
