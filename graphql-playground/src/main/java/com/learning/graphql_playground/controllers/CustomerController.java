@@ -3,11 +3,8 @@ package com.learning.graphql_playground.controllers;
 import com.learning.graphql_playground.models.entity.AgeRangeFilter;
 import com.learning.graphql_playground.models.entity.Customer;
 import com.learning.graphql_playground.models.dto.CustomerOrder;
-import com.learning.graphql_playground.models.entity.CustomerWithOrder;
-import com.learning.graphql_playground.services.CustomerOrderDataFetcher;
 import com.learning.graphql_playground.services.CustomerService;
 import com.learning.graphql_playground.services.OrderService;
-import graphql.schema.DataFetchingFieldSelectionSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.BatchMapping;
@@ -28,9 +25,6 @@ public class CustomerController {
 
     @Autowired
     private OrderService orderService;
-
-    @Autowired
-    private CustomerOrderDataFetcher dataFetcher;
 
     @SchemaMapping(typeName = "Query")
     public Flux<Customer> customers() {
@@ -72,10 +66,5 @@ public class CustomerController {
     public Mono<Map<Customer, List<CustomerOrder>>> orders(List<Customer> list) {
         System.out.println("Orders method invoked for " + list);
         return this.orderService.fetchOrdersAsMap(list);
-    }
-
-    @SchemaMapping(typeName = "Query")
-    public Flux<CustomerWithOrder> customersWithOrder(DataFetchingFieldSelectionSet selectionSet){
-        return this.dataFetcher.customerOrders(selectionSet);
     }
 }
