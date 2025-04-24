@@ -1,6 +1,6 @@
 type Query{
     customers: [Customer]!
-    customerById(id: ID!): Customer
+    customerById(id: ID!): CustomerResponse!
 }
 
 type Mutation{
@@ -9,11 +9,20 @@ type Mutation{
     deleteCustomer(id: ID!): DeleteResponse!
 }
 
+union CustomerResponse = Customer | CustomerNotFound
+
+type CustomerNotFound{
+    id: ID!
+    message: String
+}
+
 type Customer{
     id: ID!
     name: String
     age: Int
     city: String
+    address: Address
+    account: Account
 }
 
 input CustomerInput{

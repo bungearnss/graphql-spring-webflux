@@ -1,6 +1,8 @@
 package com.learning.graphql_crud_application.controllers;
 
+import com.learning.graphql_crud_application.exceptions.ApplicationErrors;
 import com.learning.graphql_crud_application.models.dto.CustomerDto;
+import com.learning.graphql_crud_application.models.response.CustomerNotFound;
 import com.learning.graphql_crud_application.models.response.DeleteResponseDto;
 import com.learning.graphql_crud_application.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,18 @@ public class CustomerController {
     }
 
     @QueryMapping
-    public Mono<CustomerDto> customerById(@Argument Integer id) {
-        return this.customerService.customerById(id);
+    public Mono<Object> customerById(@Argument Integer id) {
+        return this.customerService.customerById(id)
+                .cast(Object.class)
+                .switchIfEmpty(Mono.just(CustomerNotFound.create(id)));
     }
 
     @MutationMapping
     public Mono<CustomerDto> createCustomer(@Argument CustomerDto customer) {
-        return this.customerService.createCustomer(customer);
+        return Mono.just(customer)
+                .filter(c -> c.getAge() >= 18)
+                .flatMap(this.customerService::createCustomer)
+                .switchIfEmpty(ApplicationErrors.mustBe18(customer));
     }
 
     @MutationMapping
