@@ -9,7 +9,6 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
 @Service
-@Profile("!client")
 public class HeaderCheckFilter implements WebFilter {
 
     @Override

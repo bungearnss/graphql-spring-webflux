@@ -25,7 +25,9 @@ public class SubscriptionClient {
                             }
                         }\
                 """;
-        return this.client.document(doc)
+        return this.client
+                .mutate().header("caller-id", "123ABC").build()
+                .document(doc)
                 .retrieveSubscription("customerEvents")
                 .toEntity(CustomerEvent.class);
     }

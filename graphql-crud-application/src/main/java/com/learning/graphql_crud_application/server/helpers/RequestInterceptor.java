@@ -10,7 +10,6 @@ import reactor.core.publisher.Mono;
 import java.util.Map;
 
 @Service
-@Profile("!client")
 public class RequestInterceptor implements WebGraphQlInterceptor {
 
     @Override

@@ -29,12 +29,15 @@ public class CustomerClient {
     }
 
     public Mono<ClientGraphQlResponse> rawQuery(String query) {
-        return this.client.document(query)
+        return this.client
+                .mutate().header("caller-id", "123ABC").build()
+                .document(query)
                 .execute();
     }
 
     public Mono<GenericResponse<CustomerDto>> getCustomerById(Integer id) {
         return this.client
+                .mutate().header("caller-id", "123ABC").build()
                 .documentName("customer-by-id")
                 .variable("id", id)
                 .execute()
@@ -46,7 +49,9 @@ public class CustomerClient {
     }
 
     public Mono<CustomerResponse> getCustomerByIdWithUnion(Integer id) {
-        return this.client.documentName("customer-by-id")
+        return this.client
+                .mutate().header("caller-id", "123ABC").build()
+                .documentName("customer-by-id")
                 .variable("id", id)
                 .execute()
                 .map(cr -> {
@@ -82,7 +87,9 @@ public class CustomerClient {
     }
 
     private <T> Mono<T> crud(String operationName, Map<String, Object> variables, ParameterizedTypeReference<T> type) {
-        return this.client.documentName("crud-operations")
+        return this.client
+                .mutate().header("caller-id", "123ABC").build()
+                .documentName("crud-operations")
                 .operationName(operationName)
                 .variables(variables)
                 .retrieve("response")
