@@ -5,6 +5,7 @@ import com.learning.graphql_crud_application.models.dto.CustomerDto;
 import com.learning.graphql_crud_application.models.response.CustomerNotFound;
 import com.learning.graphql_crud_application.models.response.DeleteResponseDto;
 import com.learning.graphql_crud_application.services.CustomerService;
+import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -20,7 +21,9 @@ public class CustomerController {
     private CustomerService customerService;
 
     @QueryMapping
-    public Flux<CustomerDto> customers() {
+    public Flux<CustomerDto> customers(DataFetchingEnvironment environment) {
+        var callerId = environment.getGraphQlContext().get("caller-id");
+        System.out.println("CALLER ID : " + callerId);
         return this.customerService.allCustomers();
     }
 
