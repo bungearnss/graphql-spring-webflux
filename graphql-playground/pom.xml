@@ -51,13 +51,13 @@
 		<dependency>
 			<groupId>com.graphql-java</groupId>
 			<artifactId>graphql-java</artifactId>
-			<version>18.1</version>
+			<version>22.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-java-extended-scalars -->
 		<dependency>
 			<groupId>com.graphql-java</groupId>
 			<artifactId>graphql-java-extended-scalars</artifactId>
-			<version>18.1</version>
+			<version>22.0</version>
 		</dependency>
 	</dependencies>
 

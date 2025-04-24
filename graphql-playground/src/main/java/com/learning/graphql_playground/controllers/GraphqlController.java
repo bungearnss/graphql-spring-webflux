@@ -19,8 +19,7 @@ public class GraphqlController {
 
     @QueryMapping
     public Mono<String> sayHelloTo(@Argument("name") String value) {
-        return Mono.fromSupplier(() -> "Hello " + value)
-                .delayElement(Duration.ofMillis(900));
+        return Mono.fromSupplier(() -> "Hello " + value);
     }
 
     @QueryMapping
