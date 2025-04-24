@@ -1,0 +1,31 @@
+interface ProductDetail{
+    id: ID!
+    description: String
+    price: Int
+}
+
+type Fruit implements ProductDetail{
+    id: ID!
+    description: String
+    price: Int
+    expiryDate: String
+}
+
+type Electronics implements ProductDetail{
+    id: ID!
+    description: String
+    price: Int
+    brand: Brand
+}
+
+enum Brand {
+    APPLE
+    SAMSUNG
+}
+
+type Book implements ProductDetail{
+    id: ID!
+    description: String
+    price: Int
+    author: String
+}

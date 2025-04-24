@@ -30,4 +30,5 @@ type Query{
 
     get: AllTypes
     products: [Product]
+    productDetail: [ProductDetail]
 }
