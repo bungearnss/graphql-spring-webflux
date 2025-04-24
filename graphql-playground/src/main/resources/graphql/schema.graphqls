@@ -31,4 +31,7 @@ type Query{
     get: AllTypes
     products: [Product]
     productDetail: [ProductDetail]
+    search: [Result]
 }
+
+union Result = Fruit | Electronics | Book

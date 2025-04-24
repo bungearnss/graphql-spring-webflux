@@ -11,12 +11,14 @@ import org.springframework.graphql.execution.RuntimeWiringConfigurer;
 public class TypeResolverConfig {
 
     @Bean
-    public RuntimeWiringConfigurer typeResolverConfigurer(TypeResolver resolver){
-        return c -> c.type("ProductDetail", b -> b.typeResolver(resolver));
+    public RuntimeWiringConfigurer typeResolverConfigurer(TypeResolver resolver) {
+        return wiringBuilder -> wiringBuilder
+                .type("ProductDetail", typeWiring -> typeWiring.typeResolver(resolver))
+                .type("Result", typeWiring -> typeWiring.typeResolver(resolver));
     }
 
     @Bean
-    public TypeResolver typeResolver(){
+    public TypeResolver typeResolver() {
         ClassNameTypeResolver resolver = new ClassNameTypeResolver();
         resolver.addMapping(Fruit.class, "Fruit");
         return resolver;
