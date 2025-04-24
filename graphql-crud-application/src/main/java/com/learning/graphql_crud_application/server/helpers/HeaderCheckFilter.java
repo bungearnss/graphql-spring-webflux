@@ -1,5 +1,6 @@
-package com.learning.graphql_crud_application.helpers;
+package com.learning.graphql_crud_application.server.helpers;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ServerWebExchange;
@@ -8,6 +9,7 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
 @Service
+@Profile("!client")
 public class HeaderCheckFilter implements WebFilter {
 
     @Override

@@ -1,4 +1,4 @@
-package com.learning.graphql_crud_application.utils;
+package com.learning.graphql_crud_application.server.utils;
 
 import com.learning.graphql_crud_application.models.dto.CustomerDto;
 import com.learning.graphql_crud_application.models.entity.Customer;

@@ -1,4 +1,4 @@
-package com.learning.graphql_crud_application.exceptions;
+package com.learning.graphql_crud_application.server.exceptions;
 
 import com.learning.graphql_crud_application.models.dto.CustomerDto;
 import org.springframework.graphql.execution.ErrorType;

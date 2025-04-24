@@ -1,7 +1,7 @@
-package com.learning.graphql_crud_application.controllers;
+package com.learning.graphql_crud_application.server.controllers;
 
 import com.learning.graphql_crud_application.models.dto.CustomerEvent;
-import com.learning.graphql_crud_application.services.CustomerEventService;
+import com.learning.graphql_crud_application.server.services.CustomerEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.SubscriptionMapping;
 import org.springframework.stereotype.Controller;

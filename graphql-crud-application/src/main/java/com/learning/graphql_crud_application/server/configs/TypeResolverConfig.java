@@ -1,4 +1,4 @@
-package com.learning.graphql_crud_application.configs;
+package com.learning.graphql_crud_application.server.configs;
 
 import com.learning.graphql_crud_application.models.dto.CustomerDto;
 import graphql.schema.TypeResolver;

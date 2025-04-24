@@ -1,4 +1,4 @@
-package com.learning.graphql_crud_application.services;
+package com.learning.graphql_crud_application.server.services;
 
 import com.learning.graphql_crud_application.models.dto.CustomerEvent;
 import org.springframework.stereotype.Service;

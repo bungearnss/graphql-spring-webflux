@@ -1,4 +1,4 @@
-package com.learning.graphql_crud_application.repositories;
+package com.learning.graphql_crud_application.server.repositories;
 
 import com.learning.graphql_crud_application.models.entity.Customer;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;

@@ -1,4 +1,4 @@
-package com.learning.graphql_crud_application.exceptions;
+package com.learning.graphql_crud_application.server.exceptions;
 
 import org.springframework.graphql.execution.ErrorType;
 

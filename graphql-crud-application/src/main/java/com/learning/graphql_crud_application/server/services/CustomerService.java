@@ -1,12 +1,12 @@
-package com.learning.graphql_crud_application.services;
+package com.learning.graphql_crud_application.server.services;
 
 import com.learning.graphql_crud_application.models.dto.Action;
 import com.learning.graphql_crud_application.models.dto.CustomerDto;
 import com.learning.graphql_crud_application.models.dto.CustomerEvent;
 import com.learning.graphql_crud_application.models.dto.Status;
 import com.learning.graphql_crud_application.models.response.DeleteResponseDto;
-import com.learning.graphql_crud_application.repositories.CustomerRepository;
-import com.learning.graphql_crud_application.utils.EntityDtoUtil;
+import com.learning.graphql_crud_application.server.repositories.CustomerRepository;
+import com.learning.graphql_crud_application.server.utils.EntityDtoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

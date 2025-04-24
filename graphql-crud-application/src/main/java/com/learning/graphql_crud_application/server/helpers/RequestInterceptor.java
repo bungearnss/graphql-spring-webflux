@@ -1,5 +1,6 @@
-package com.learning.graphql_crud_application.helpers;
+package com.learning.graphql_crud_application.server.helpers;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.graphql.server.WebGraphQlInterceptor;
 import org.springframework.graphql.server.WebGraphQlRequest;
 import org.springframework.graphql.server.WebGraphQlResponse;
@@ -9,6 +10,7 @@ import reactor.core.publisher.Mono;
 import java.util.Map;
 
 @Service
+@Profile("!client")
 public class RequestInterceptor implements WebGraphQlInterceptor {
 
     @Override

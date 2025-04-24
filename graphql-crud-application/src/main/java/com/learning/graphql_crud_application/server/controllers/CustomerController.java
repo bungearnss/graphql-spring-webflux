@@ -1,10 +1,10 @@
-package com.learning.graphql_crud_application.controllers;
+package com.learning.graphql_crud_application.server.controllers;
 
-import com.learning.graphql_crud_application.exceptions.ApplicationErrors;
+import com.learning.graphql_crud_application.server.exceptions.ApplicationErrors;
 import com.learning.graphql_crud_application.models.dto.CustomerDto;
 import com.learning.graphql_crud_application.models.response.CustomerNotFound;
 import com.learning.graphql_crud_application.models.response.DeleteResponseDto;
-import com.learning.graphql_crud_application.services.CustomerService;
+import com.learning.graphql_crud_application.server.services.CustomerService;
 import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;

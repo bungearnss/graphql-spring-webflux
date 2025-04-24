@@ -1,6 +1,6 @@
-package com.learning.graphql_crud_application.helpers;
+package com.learning.graphql_crud_application.server.helpers;
 
-import com.learning.graphql_crud_application.exceptions.ApplicationException;
+import com.learning.graphql_crud_application.server.exceptions.ApplicationException;
 import graphql.GraphQLError;
 import graphql.GraphqlErrorBuilder;
 import graphql.schema.DataFetchingEnvironment;
