@@ -1,6 +1,8 @@
 package com.learning.graphql_crud_application.services;
 
+import com.learning.graphql_crud_application.models.dto.Action;
 import com.learning.graphql_crud_application.models.dto.CustomerDto;
+import com.learning.graphql_crud_application.models.dto.CustomerEvent;
 import com.learning.graphql_crud_application.models.dto.Status;
 import com.learning.graphql_crud_application.models.response.DeleteResponseDto;
 import com.learning.graphql_crud_application.repositories.CustomerRepository;
@@ -16,6 +18,9 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private CustomerEventService customerEventService;
+
     public Flux<CustomerDto> allCustomers() {
         return this.customerRepository.findAll()
                 .map(EntityDtoUtil::toDto);
@@ -30,18 +35,21 @@ public class CustomerService {
         return Mono.just(dto)
                 .map(EntityDtoUtil::toEntity)
                 .flatMap(this.customerRepository::save)
-                .map(EntityDtoUtil::toDto);
+                .map(EntityDtoUtil::toDto)
+                .doOnNext(c -> this.customerEventService.emitEvent(CustomerEvent.create(c.getId(), Action.CREATED)));
     }
 
     public Mono<CustomerDto> updateCustomer(Integer id, CustomerDto dto) {
         return this.customerRepository.findById(id)
                 .map(c -> EntityDtoUtil.toEntity(id, dto))
                 .flatMap(this.customerRepository::save)
-                .map(EntityDtoUtil::toDto);
+                .map(EntityDtoUtil::toDto)
+                .doOnNext(c -> this.customerEventService.emitEvent(CustomerEvent.create(c.getId(), Action.UPDATED)));
     }
 
     public Mono<DeleteResponseDto> deleteCustomer(Integer id) {
         return this.customerRepository.deleteById(id)
+                .doOnSuccess(c -> this.customerEventService.emitEvent(CustomerEvent.create(id, Action.DELETED)))
                 .thenReturn(DeleteResponseDto.create(id, Status.SUCCESS))
                 .onErrorReturn(DeleteResponseDto.create(id, Status.FAILURE));
     }
